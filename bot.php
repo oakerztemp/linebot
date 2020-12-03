@@ -27,7 +27,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_message = '';
         $reply_token = $event['replyToken'];
         if(strpos($event['message']['text'],'ราคา') !== false){
-            $text = $rate."\r\n",$rate2;             
+            $text = $rate."\r\n".$rate2;             
         } else if ($event['message']['text'] =='ขึ้นหรือลง'){
             $text = $text2;  
         } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
