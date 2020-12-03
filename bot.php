@@ -7,7 +7,8 @@ $channelSecret = '79b5d64ade6e6d617aef2df8eb49fb3c';
 
 
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-
+$request = file_get_contents('php://input');   // Get request content
+$request_array = json_decode($request, true);   // Decode JSON to Array
 $url = "https://bitpay.com/api/rates";
 $json = json_decode(file_get_contents($url));
 $dollar = $btc = 0;
