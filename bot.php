@@ -14,7 +14,7 @@ $url = "https://bitpay.com/api/rates";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $rate = $data[2]["rate"];
-$text2 = 'ขณะนี้ Long : 64 % และ short : 25 %';
+$text2 = 'ขณะนี้ Long : 75 % และ short : 25 %';
 
 if ( sizeof($request_array['events']) > 0 ) {
 
