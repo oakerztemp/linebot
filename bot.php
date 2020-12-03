@@ -5,11 +5,11 @@ $API_URL = 'https://api.line.me/v2/bot/message';
 $ACCESS_TOKEN = 'xjfUrjHuLxfuxkPURAgewxeyhkw7t8DeGQ5PN/NXe9dR7m84+SAHEch5iuqa7JzaNqwvDO2a6TAcvoylHDSpVcHN0B8799BXmelVdiNhkUdcj/0R7zg3bSYe0SVFeBEERxfJHtDptKBz1DFP0p75YwdB04t89/1O/w1cDnyilFU='; 
 $channelSecret = '79b5d64ade6e6d617aef2df8eb49fb3c';
 
-
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
+
 
 
 if ( sizeof($request_array['events']) > 0 ) {
@@ -51,5 +51,6 @@ function send_reply_message($url, $post_header, $post_body)
 
     return $result;
 }
+
 
 ?>
