@@ -22,11 +22,10 @@ if ( sizeof($request_array['events']) > 0 ) {
 
         $reply_message = '';
         $reply_token = $event['replyToken'];
-        
-        if($event['message']['text']='ราคา'){
+        $text1 = $event['message']['text']
+        if($text1 ='ราคา'){
             $text = $rate;             
-        }
-        else{
+        }else{
             $text = $event['message']['text'];
         }
         $data = [
