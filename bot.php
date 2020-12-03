@@ -20,10 +20,10 @@ if ( sizeof($request_array['events']) > 0 ) {
     foreach ($request_array['events'] as $event) {
 
         $reply_message = '';
-        $reply_token = $rate
-        #$reply_token = $event['replyToken'];
+        $reply_token = $event['replyToken'];
 
-        $text = $event['message']['text'];
+        $text = $rate;
+        #$text = $event['message']['text'];
         $data = [
             'replyToken' => $reply_token,
             // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
