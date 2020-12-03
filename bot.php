@@ -14,6 +14,7 @@ $url = "https://bitpay.com/api/rates";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $rate = $data[2]["rate"];
+$rate2 = $data[13]["rate"];
 $val = (rand(40,80));
 $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
@@ -25,8 +26,8 @@ if ( sizeof($request_array['events']) > 0 ) {
 
         $reply_message = '';
         $reply_token = $event['replyToken'];
-        if($event['message']['text'] =='ราคา'){
-            $text = $rate;             
+        if(strpos($event['message']['text'],'ราคา') !== false){
+            $text = $rate."\r\n",$rate2;             
         } else if ($event['message']['text'] =='ขึ้นหรือลง'){
             $text = $text2;  
         } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
