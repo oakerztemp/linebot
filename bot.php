@@ -14,14 +14,14 @@ $url = "https://bitpay.com/api/rates";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $rate = $data[2]["rate"];
-echo $rate;
 
 if ( sizeof($request_array['events']) > 0 ) {
 
     foreach ($request_array['events'] as $event) {
 
         $reply_message = '';
-        $reply_token = $event['replyToken'];
+        $reply_token = $rate
+        #$reply_token = $event['replyToken'];
 
         $text = $event['message']['text'];
         $data = [
@@ -29,7 +29,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
             'messages' => [['type' => 'text', 'text' => $text ]]
         ];
-        $post_body = json_encode($rate, JSON_UNESCAPED_UNICODE);
+        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
         $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
