@@ -29,7 +29,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             $text = $rate;             
         } else if ($event['message']['text'] =='ขึ้นหรือลง'){
             $text = $text2;  
-        } else if (strpos($event['message']['text'],'กลับบ้าน') !== true){
+        } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
             $text = 'เก็บของสิค่ะ รออะไร';
         } else {
             $text = 'ใจเย็นนะ ไม่มีข้อมูลค่ะ';
