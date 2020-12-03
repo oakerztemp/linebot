@@ -9,12 +9,10 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
-$url = "https://api.coingate.com/v2/rates/merchant/BTC/USD";
-$json = json_decode(file_get_contents($url));
-$dollar = $btc = 0;
-foreach($json as $obj){
-   echo '1 bitcoin = $'. $obj->rate .' '. $obj->name .' ('. $obj->code .')<br>';
-}
+
+$ch = curl_init( "https://api.coingate.com/v2/rates/merchant/BTC/USD" ); // You can change this to other crypto trade currency rate provider
+$content = curl_exec( $ch ); // Gets the page's content
+echo date("Y-M-D H:i:s") . "The price of BTC is $". $content
 
 if ( sizeof($request_array['events']) > 0 ) {
 
