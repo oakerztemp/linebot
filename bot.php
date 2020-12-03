@@ -7,14 +7,12 @@ $channelSecret = '79b5d64ade6e6d617aef2df8eb49fb3c';
 
 
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-$url = "https://bitpay.com/api/rates";
-$json = file_get_contents($url);
-$data = json_decode($json, TRUE);
 
-$rate = $data[2]["rate"];   //$data[1] is outdated now, they have updated their json order. This new number 2 now fetches USD price. 
-$usd_price = 10;     # Let cost of elephant be 10$
-$bitcoin_price = round( $usd_price / $rate , 8 );
-echo ".$bitcoin_price."\r\n;
+$url = "https://bitpay.com/api/rates";
+$json = json_decode(file_get_contents($url));
+$dollar = $btc = 0;
+foreach($json as $obj){
+echo '1 bitcoin = $'. $obj->rate .' '. $obj->name .' ('. $obj->code .')<br>';
 
 
 
