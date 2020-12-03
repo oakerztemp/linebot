@@ -29,6 +29,9 @@ if ( sizeof($request_array['events']) > 0 ) {
             $text = $rate;             
         } else if ($event['message']['text'] =='ขึ้นหรือลง'){
             $text = $text2;  
+        } else if ($event['message']['text'] =='ได้เวลากลับบ้านแล้ว'){
+            $text = 'เก็บของสิค่ะ รออะไร';
+        }
         } else {
             $text = 'ใจเย็นนะ ไม่มีข้อมูลค่ะ';
         }
