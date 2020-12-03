@@ -9,7 +9,7 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
-$url = "https://bitpay.com/api/rates";
+$url = "https://api.coingate.com/v2/rates/merchant/BTC/USD";
 $json = json_decode(file_get_contents($url));
 $dollar = $btc = 0;
 foreach($json as $obj){
