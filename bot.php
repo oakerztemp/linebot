@@ -19,7 +19,7 @@ $val = (rand(40,80));
 $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
 $val3 = (rand(1,2));
-
+$sig = 0;
 if ( sizeof($request_array['events']) > 0) {
 
     foreach ($request_array['events'] as $event) {
@@ -27,23 +27,30 @@ if ( sizeof($request_array['events']) > 0) {
 
         $reply_message = '';
         $reply_token = $event['replyToken'];
-        if(strpos($event['message']['text'],'rose') !== false){  
+        if(strpos($event['message']['text'],'rose') !== false or sig == 1){  
             if(strpos($event['message']['text'],'ราคา') !== false){
-                $text = $rate."\r\n".$rate2;             
+                $text = $rate."\r\n".$rate2;
+                $sig = 0;
             }else if (strpos($event['message']['text'],'เล่น') !== false){
                 if($val3 == 1){
                     $text = 'long';
+                    $sig = 0;
                 }else{
                     $text = 'short';
+                    $sig = 0;
                 }
             } else if ($event['message']['text'] =='ขึ้นหรือลง'){
-                $text = $text2; 
+                $text = $text2;
+                $sig = 0;
             } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
                 $text = 'เก็บของสิค่ะ รออะไร';
+                $sig = 0;
             } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
                 $text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
+                $sig = 0;
             } else {
                 $text = 'ว่าไงคะ';
+                $sig = 1;
             }
         }
         #$text = $event['message']['text'];
