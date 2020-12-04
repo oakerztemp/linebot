@@ -50,7 +50,7 @@ if ( sizeof($request_array['events']) > 0) {
                 $sig = 0;
             } else {
                 $text = 'ว่าไงคะ';
-                $sig = 1;
+                $sig += 1;
             }
         }
         #$text = $event['message']['text'];
@@ -66,7 +66,7 @@ if ( sizeof($request_array['events']) > 0) {
         echo "Result: ".$send_result."\r\n";
     }
 }
-
+echo $sig;
 echo "OK";
 
 
