@@ -20,7 +20,7 @@ $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
 $val3 = (rand(1,2));
 
-if ( sizeof($request_array['events']) > 0 ) {
+if ( sizeof($request_array['events']) > 0 and strpos($event['message']['text'],'rose') !== false) {
 
     foreach ($request_array['events'] as $event) {
         
