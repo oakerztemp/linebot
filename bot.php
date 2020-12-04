@@ -29,7 +29,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_token = $event['replyToken'];
         if(strpos($event['message']['text'],'ราคา') !== false){
             $text = $rate."\r\n".$rate2;             
-        }else if ($event['message']['text'] =='เล่น'){
+        }else if (strpos($event['message']['text'],'เล่น') !== false){
             if($val3 == 1){
                 $text = 'long';
             }else{
