@@ -39,6 +39,8 @@ if ( sizeof($request_array['events']) > 0 ) {
             $text = $text2; 
         } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
             $text = 'เก็บของสิค่ะ รออะไร';
+        } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
+            $text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
         } else {
             $text = '';
         }
