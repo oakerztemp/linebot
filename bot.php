@@ -18,6 +18,7 @@ $rate2 = $data[13]["rate"];
 $val = (rand(40,80));
 $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
+$val3 = (rand(1,2));
 
 if ( sizeof($request_array['events']) > 0 ) {
 
@@ -28,12 +29,18 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_token = $event['replyToken'];
         if(strpos($event['message']['text'],'ราคา') !== false){
             $text = $rate."\r\n".$rate2;             
+        }else if ($event['message']['text'] =='เล่น'){
+            if($val3 == 1){
+                $text = 'long';
+            }else{
+                $text = 'short';
+            }
         } else if ($event['message']['text'] =='ขึ้นหรือลง'){
-            $text = $text2;  
+            $text = $text2; 
         } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
             $text = 'เก็บของสิค่ะ รออะไร';
         } else {
-            $text = 'ใจเย็นนะ ไม่มีข้อมูลค่ะ';
+            $text = '';
         }
         #$text = $event['message']['text'];
         $data = [
