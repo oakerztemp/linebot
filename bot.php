@@ -27,7 +27,7 @@ if ( sizeof($request_array['events']) > 0) {
 
         $reply_message = '';
         $reply_token = $event['replyToken'];
-        if(strpos($event['message']['text'],'rose') !== false or sig == 1){  
+        if(strpos($event['message']['text'],'rose') !== false or $sig == 1){  
             if(strpos($event['message']['text'],'ราคา') !== false){
                 $text = $rate."\r\n".$rate2;
                 $sig = 0;
