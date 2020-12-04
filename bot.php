@@ -20,29 +20,31 @@ $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
 $val3 = (rand(1,2));
 
-if ( sizeof($request_array['events']) > 0 and strpos($event['message']['text'],'rose') !== false) {
+if ( sizeof($request_array['events']) > 0) {
 
     foreach ($request_array['events'] as $event) {
         
 
         $reply_message = '';
         $reply_token = $event['replyToken'];
-        if(strpos($event['message']['text'],'ราคา') !== false){
-            $text = $rate."\r\n".$rate2;             
-        }else if (strpos($event['message']['text'],'เล่น') !== false){
-            if($val3 == 1){
-                $text = 'long';
-            }else{
-                $text = 'short';
+        if(strpos($event['message']['text'],'rose') !== false){  
+            if(strpos($event['message']['text'],'ราคา') !== false){
+                $text = $rate."\r\n".$rate2;             
+            }else if (strpos($event['message']['text'],'เล่น') !== false){
+                if($val3 == 1){
+                    $text = 'long';
+                }else{
+                    $text = 'short';
+                }
+            } else if ($event['message']['text'] =='ขึ้นหรือลง'){
+                $text = $text2; 
+            } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
+                $text = 'เก็บของสิค่ะ รออะไร';
+            } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
+                $text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
+            } else {
+                $text = 'ว่าไงคะ';
             }
-        } else if ($event['message']['text'] =='ขึ้นหรือลง'){
-            $text = $text2; 
-        } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
-            $text = 'เก็บของสิค่ะ รออะไร';
-        } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
-            $text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
-        } else {
-            $text = '';
         }
         #$text = $event['message']['text'];
         $data = [
