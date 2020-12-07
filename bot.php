@@ -21,6 +21,7 @@ $rate = $data[2]["rate"];
 $rate2 = $rate/$data[13]["rate"];
 $rate3 = $rate/$data[14]["rate"];
 $val = (rand(40,80));
+$audioUrl = "https://drive.google.com/file/d/1D8bCrfGQVbD4-MLNKGFq5QtzqCSMyrEK/view?usp=sharing";
 $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
 #$val3 = (rand(1,2));
@@ -46,17 +47,15 @@ if ( sizeof($request_array['events']) > 0) {
                 }
             } else if (strpos($event['message']['text'],'ขึ้นหรือลง') !== false){
                 $text = $text2;
-                $sig = 0;
             } else if (strpos($event['message']['text'],'รู้') !== false){
                 $text = 'ไม่ทราบค่าา';
-                $sig = 0;
             } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
                 $text = 'เก็บของสิค่ะ รออะไร';
-                $sig = 0;
             } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
                 #$text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
                 $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
-                $sig = 0;
+            } else if (strpos($event['message']['text'],'เพลง') !== false){
+                $replyData = new AudioMessageBuilder($audioUrl,27000);
             } else {
                 $text = 'ว่าไงคะ';
                 $sig += 1;
