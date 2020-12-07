@@ -11,15 +11,19 @@ $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
 $url = "https://bitpay.com/api/rates";
+$url2 = "https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hay5zdW1yZXRAZ21haWwuY29tIiwiaWF0IjoxNjA3MzM0NzczLCJleHAiOjc5MTQ1MzQ3NzN9.UVotfjpZkD2qLwbZSBauhE48F1isq7_JiLAQsp8nYWg&exchange=binance&symbol=BTC/USDT&interval=1h";
 $json = file_get_contents($url);
+$json2 = file_get_contents($url2);
+$data2 = json_decode($json2, TRUE);
 $data = json_decode($json, TRUE);
+$rsibtc = $data2[0]["value"];
 $rate = $data[2]["rate"];
 $rate2 = $rate/$data[13]["rate"];
 $rate3 = $rate/$data[14]["rate"];
 $val = (rand(40,80));
 $val2 = 100-$val;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
-$val3 = (rand(1,2));
+#$val3 = (rand(1,2));
 $sig = 0;
 if ( sizeof($request_array['events']) > 0) {
 
@@ -33,12 +37,12 @@ if ( sizeof($request_array['events']) > 0) {
                 $text = "BTC : ".$rate."\r\n"."ETH : ".$rate2."\r\n"."XRP : ".$rate3;
                 $sig = 0;
             }else if (strpos($event['message']['text'],'เล่น') !== false){
-                if($val3 == 1){
-                    $text = 'long';
-                    $sig = 0;
+                if($rsibtc >= 60){
+                    $text = 'long'."RSI ตอนนี้อยู่ที่ ".$rsibtc;
+                }else if($rsibtc <= 25){
+                    $text = 'short'."RSI ตอนนี้อยู่ที่ ".$rsibtc;
                 }else{
-                    $text = 'short';
-                    $sig = 0;
+                    $text = 'กลางๆคะอย่าเสี่ยงเลยนะคะ '."RSI ตอนนี้อยู่ที่ ".$rsibtc;
                 }
             } else if (strpos($event['message']['text'],'ขึ้นหรือลง') !== false){
                 $text = $text2;
