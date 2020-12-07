@@ -21,7 +21,7 @@ $rate = $data[2]["rate"];
 $rate2 = $rate/$data[13]["rate"];
 $rate3 = $rate/$data[14]["rate"];
 $val = (rand(40,80));
-$audioUrl = "https://drive.google.com/file/d/1D8bCrfGQVbD4-MLNKGFq5QtzqCSMyrEK/view?usp=sharing";
+$audioUrl = "https://audiotrimmer.com/download.php?date=11&file=BLACKPINK%20-%20Kill%20This%20Love%20my-free-mp3s.com%20-%5BAudioTrimmer.com%5D.mp3";
 $val2 = 100-$val;
 $check = 0;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
