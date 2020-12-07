@@ -75,7 +75,7 @@ if ( sizeof($request_array['events']) > 0) {
         echo "Result: ".$send_result."\r\n";
     }
 }
-echo $sig;
+echo $rsibtc;
 echo "OK";
 
 
