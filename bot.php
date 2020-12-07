@@ -39,8 +39,11 @@ if ( sizeof($request_array['events']) > 0) {
                     $text = 'short';
                     $sig = 0;
                 }
-            } else if ($event['message']['text'] =='ขึ้นหรือลง'){
+            } else if (strpos($event['message']['text'],'ขึ้นหรือลง') !== false){
                 $text = $text2;
+                $sig = 0;
+            } else if (strpos($event['message']['text'],'รู้') !== false){
+                $text = 'ไม่ทราบค่าา';
                 $sig = 0;
             } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
                 $text = 'เก็บของสิค่ะ รออะไร';
