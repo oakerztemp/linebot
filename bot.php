@@ -56,7 +56,7 @@ if ( sizeof($request_array['events']) > 0) {
                 #$text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
                 $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
             } else if (strpos($event['message']['text'],'เพลง') !== false){
-                $data = new AudioMessageBuilder($audioUrl,27000);
+                $micdata = new AudioMessageBuilder($audioUrl,27000);
                 $check = 1;
             } else {
                 $text = 'ว่าไงคะ';
@@ -64,18 +64,20 @@ if ( sizeof($request_array['events']) > 0) {
             }
         }
         #$text = $event['message']['text'];
-        if (check == 0){
+        if ($check == 0){
             $data = [
                 'replyToken' => $reply_token,
                 // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
                 'messages' => [['type' => 'text', 'text' => $text ]]
             ];
+            $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
+            echo "Result: ".$send_result."\r\n";
+        } else if ($check == 1){
+            $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $micdata);
+            echo "Result: ".$send_result."\r\n";
         }
-        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-
-        $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-
-        echo "Result: ".$send_result."\r\n";
+        
     }
 }
 echo "OK";
