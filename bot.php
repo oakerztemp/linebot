@@ -23,6 +23,7 @@ $rate3 = $rate/$data[14]["rate"];
 $val = (rand(40,80));
 $audioUrl = "https://drive.google.com/file/d/1D8bCrfGQVbD4-MLNKGFq5QtzqCSMyrEK/view?usp=sharing";
 $val2 = 100-$val;
+$check = 0;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
 #$val3 = (rand(1,2));
 $sig = 0;
@@ -55,18 +56,21 @@ if ( sizeof($request_array['events']) > 0) {
                 #$text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
                 $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
             } else if (strpos($event['message']['text'],'เพลง') !== false){
-                $replyData = new AudioMessageBuilder($audioUrl,27000);
+                $data = new AudioMessageBuilder($audioUrl,27000);
+                $check = 1;
             } else {
                 $text = 'ว่าไงคะ';
                 $sig += 1;
             }
         }
         #$text = $event['message']['text'];
-        $data = [
-            'replyToken' => $reply_token,
-            // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
-            'messages' => [['type' => 'text', 'text' => $text ]]
-        ];
+        if (check == 0){
+            $data = [
+                'replyToken' => $reply_token,
+                // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
+                'messages' => [['type' => 'text', 'text' => $text ]]
+            ];
+        }
         $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
         $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
