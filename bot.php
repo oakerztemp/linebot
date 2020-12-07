@@ -17,6 +17,7 @@ $json2 = file_get_contents($url2);
 $data2 = json_decode($json2, TRUE);
 $data = json_decode($json, TRUE);
 $rsibtc = $data2["value"];
+echo $rsibtc;
 $rate = $data[2]["rate"];
 $rate2 = $rate/$data[13]["rate"];
 $rate3 = $rate/$data[14]["rate"];
