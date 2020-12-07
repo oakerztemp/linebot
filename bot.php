@@ -21,7 +21,7 @@ $rate = $data[2]["rate"];
 $rate2 = $rate/$data[13]["rate"];
 $rate3 = $rate/$data[14]["rate"];
 $val = (rand(40,80));
-$audioUrl = "https://audiotrimmer.com/download.php?date=11&file=BLACKPINK%20-%20Kill%20This%20Love%20my-free-mp3s.com%20-%5BAudioTrimmer.com%5D.mp3";
+$audioUrl = "https://drive.google.com/file/d/1D8bCrfGQVbD4-MLNKGFq5QtzqCSMyrEK/view";
 $val2 = 100-$val;
 $check = 0;
 $text2 = "ขณะนี้ Long : ".$val." % และ short :".$val2." %";
@@ -56,7 +56,7 @@ if ( sizeof($request_array['events']) > 0) {
                 #$text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
                 $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
             } else if (strpos($event['message']['text'],'เพลง') !== false){
-                $micdata = new AudioMessageBuilder($audioUrl,27000);
+                $micdata = new AudioMessageBuilder($audioUrl,11000);
                 $check = 1;
             } else {
                 $text = 'ว่าไงคะ';
