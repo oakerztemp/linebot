@@ -9,6 +9,124 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
+$jsonFlex = [
+    "type" => "flex",
+    "altText" => "Hello Flex Message",
+    "contents" => [
+      "type" => "bubble",
+      "direction" => "ltr",
+      "header" => [
+        "type" => "box",
+        "layout" => "vertical",
+        "contents" => [
+          [
+            "type" => "text",
+            "text" => "Purchase",
+            "size" => "lg",
+            "align" => "start",
+            "weight" => "bold",
+            "color" => "#009813"
+          ],
+          [
+            "type" => "text",
+            "text" => "฿ 100.00",
+            "size" => "3xl",
+            "weight" => "bold",
+            "color" => "#000000"
+          ],
+          [
+            "type" => "text",
+            "text" => "Rabbit Line Pay",
+            "size" => "lg",
+            "weight" => "bold",
+            "color" => "#000000"
+          ],
+          [
+            "type" => "text",
+            "text" => "2019.02.14 21:47 (GMT+0700)",
+            "size" => "xs",
+            "color" => "#B2B2B2"
+          ],
+          [
+            "type" => "text",
+            "text" => "Payment complete.",
+            "margin" => "lg",
+            "size" => "lg",
+            "color" => "#000000"
+          ]
+        ]
+      ],
+      "body" => [
+        "type" => "box",
+        "layout" => "vertical",
+        "contents" => [
+          [
+            "type" => "separator",
+            "color" => "#C3C3C3"
+          ],
+          [
+            "type" => "box",
+            "layout" => "baseline",
+            "margin" => "lg",
+            "contents" => [
+              [
+                "type" => "text",
+                "text" => "Merchant",
+                "align" => "start",
+                "color" => "#C3C3C3"
+              ],
+              [
+                "type" => "text",
+                "text" => "BTS 01",
+                "align" => "end",
+                "color" => "#000000"
+              ]
+            ]
+          ],
+          [
+            "type" => "box",
+            "layout" => "baseline",
+            "margin" => "lg",
+            "contents" => [
+              [
+                "type" => "text",
+                "text" => "New balance",
+                "color" => "#C3C3C3"
+              ],
+              [
+                "type" => "text",
+                "text" => "฿ 45.57",
+                "align" => "end"
+              ]
+            ]
+          ],
+          [
+            "type" => "separator",
+            "margin" => "lg",
+            "color" => "#C3C3C3"
+          ]
+        ]
+      ],
+      "footer" => [
+        "type" => "box",
+        "layout" => "horizontal",
+        "contents" => [
+          [
+            "type" => "text",
+            "text" => "View Details",
+            "size" => "lg",
+            "align" => "start",
+            "color" => "#0084B6",
+            "action" => [
+              "type" => "uri",
+              "label" => "View Details",
+              "uri" => "https://google.co.th/"
+            ]
+          ]
+        ]
+      ]
+    ]
+  ];
 
 $url = "https://bitpay.com/api/rates";
 $url2 = "https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hay5zdW1yZXRAZ21haWwuY29tIiwiaWF0IjoxNjA3MzM0NzczLCJleHAiOjc5MTQ1MzQ3NzN9.UVotfjpZkD2qLwbZSBauhE48F1isq7_JiLAQsp8nYWg&exchange=binance&symbol=BTC/USDT&interval=1h";
@@ -57,6 +175,8 @@ if ( sizeof($request_array['events']) > 0) {
                 $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
             } else if (strpos($event['message']['text'],'เพลง') !== false){
                 $micdata = new AudioMessageBuilder($audioUrl,11000);
+                $check = 2;
+            } else if (strpos($event['message']['text'],'จ่ายเงิน') !== false){
                 $check = 1;
             } else {
                 $text = 'ว่าไงคะ';
@@ -74,7 +194,8 @@ if ( sizeof($request_array['events']) > 0) {
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
             echo "Result: ".$send_result."\r\n";
         } else if ($check == 1){
-            $post_body = json_encode($micdata, JSON_UNESCAPED_UNICODE);
+            $data = ['replyToken' => $reply_token,'messages' => [$jsonFlex]];
+            $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
             echo "Result: ".$send_result."\r\n";
         }   
