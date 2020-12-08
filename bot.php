@@ -178,9 +178,10 @@ if ( sizeof($request_array['events']) > 0) {
                 $check = 2;
             } else if (strpos($event['message']['text'],'จ่ายเงิน') !== false){
                 $check = 1;
+            } else if (strpos($event['message']['text'],'มั่ว') !== false){
+                $check = 3;
             } else {
                 $text = 'ว่าไงคะ';
-                $sig += 1;
             }
         }
         #$text = $event['message']['text'];
@@ -198,7 +199,16 @@ if ( sizeof($request_array['events']) > 0) {
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
             echo "Result: ".$send_result."\r\n";
-        }   
+        }  else if ($check == 3){
+            $data = [
+                'replyToken' => $reply_token,
+                // 'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  Debug Detail message
+                'messages' => [['type' => 'sticker', 'packageId' => '2', 'stickerId' => '34']]
+            ];
+            $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
+            echo "Result: ".$send_result."\r\n";
+        }      
     }
 }
 echo "OK";
