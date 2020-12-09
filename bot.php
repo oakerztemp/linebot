@@ -171,8 +171,8 @@ if ( sizeof($request_array['events']) > 0) {
             } else if (strpos($event['message']['text'],'กลับบ้าน') !== false){
                 $text = 'เก็บของสิค่ะ รออะไร';
             } else if (strpos($event['message']['text'],'สัญญาณ') !== false){
-                #$text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
-                $text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
+                $text = 'ขณะนี้ยังไม่มีสัญญานคะ ลองคิดดูเอาเองก่อนนะคะ';
+                #$text = 'ตอนนี้มีสัญญาณ ซื้อ DUSK/BTC ที่ราคา 0.00000261 คะ'."\r\n"."ชื่อเหรียญ : Dusk Network"."\r\n"."TF : 1 Hr"."\r\n"."โปรดตรวจสอบคะ";
             } else if (strpos($event['message']['text'],'เพลง') !== false){
                 $micdata = new AudioMessageBuilder($audioUrl,11000);
                 $check = 2;
