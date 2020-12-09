@@ -158,9 +158,9 @@ if ( sizeof($request_array['events']) > 0) {
                 $sig = 0;
             }else if (strpos($event['message']['text'],'เล่น') !== false){
                 if($rsibtc >= 60){
-                    $text = 'long ไปเลยค่าา ปิ้วๆ'."RSI ตอนนี้อยู่ที่ "."\r\n"."RSI ตอนนี้อยู่ที่ ".$rsibtc."\r\n"."ที่ Binance BTC/USDT TF 1 Hr ค่าา";
+                    $text = 'long ไปเลยค่าา ปิ้วๆ'."\r\n"."RSI ตอนนี้อยู่ที่ ".$rsibtc."\r\n"."ที่ Binance BTC/USDT TF 1 Hr ค่าา";
                 }else if($rsibtc <= 40){
-                    $text = 'short ไปเลยค่าา ฮ๊วบๆ'."RSI ตอนนี้อยู่ที่ "."\r\n"."RSI ตอนนี้อยู่ที่ ".$rsibtc."\r\n"."ที่ Binance BTC/USDT TF 1 Hr ค่าา";
+                    $text = 'short ไปเลยค่าา ฮ๊วบๆ'."\r\n"."RSI ตอนนี้อยู่ที่ ".$rsibtc."\r\n"."ที่ Binance BTC/USDT TF 1 Hr ค่าา";
                 }else{
                     $text = 'กลางๆคะอย่าเสี่ยงเลยนะคะ '."\r\n"."RSI ตอนนี้อยู่ที่ ".$rsibtc."\r\n"."ที่ Binance BTC/USDT TF 1 Hr ค่าา";
                 }
